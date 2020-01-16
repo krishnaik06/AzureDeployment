@@ -4,13 +4,13 @@ import pickle
 
 
 app = Flask(__name__)
-model = pickle.load(open('randomForestRegressor.pkl','rb'))
+model = pickle.load(open('Data/Pickle_Models/randomForestRegressor.pkl','rb'))
 
 
 @app.route('/')
 def home():
     #return 'Hello World'
-    return render_template('templates/index.html')
+    return render_template('home.html')
     #return render_template('index.html')
 
 @app.route('/predict',methods = ['POST'])
@@ -21,7 +21,7 @@ def predict():
     print(prediction[0])
 
     #output = round(prediction[0], 2)
-    return render_template('templates/home.html', prediction_text="AQI for Jaipur {}".format(prediction[0]))
+    return render_template('home.html', prediction_text="AQI for Jaipur {}".format(prediction[0]))
 
 @app.route('/predict_api',methods=['POST'])
 def predict_api():
